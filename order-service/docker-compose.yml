@@ -1,0 +1,22 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_USER: example-user
+      MARIADB_PASSWORD: root
+      MARIADB_DATABASE: mydb
+    networks:
+      my-network:
+    ports:
+      - "3306:3306"
+
+networks:
+  my-network:
+    external: true
+    name: ecommerce-network
